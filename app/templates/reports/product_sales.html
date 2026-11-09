@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Product Sales Summary{% endblock %}
+{% block content %}
+<h1>Product Sales Summary</h1>
+
+<form method="get" class="filters">
+  <label>From <input type="date" name="date_from" value="{{ date_from }}"></label>
+  <label>To   <input type="date" name="date_to"   value="{{ date_to }}"></label>
+  <button type="submit">Apply</button>
+</form>
+
+<table>
+  <thead>
+    <tr><th>Code</th><th>Product</th><th>Qty sold</th><th>Gross value</th></tr>
+  </thead>
+  <tbody>
+    {% for r in rows %}
+    <tr>
+      <td>{{ r.product_code }}</td>
+      <td>{{ r.product_name }}</td>
+      <td>{{ r.qty_sold }}</td>
+      <td>{{ '%.2f'|format(r.gross_value) }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="4">No confirmed sales.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

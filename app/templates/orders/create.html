@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}New Order{% endblock %}
+{% block content %}
+<h1>New Sales Order</h1>
+
+<form method="post" id="order-form">
+  <label>Customer *
+    <select name="customer_id" required>
+      <option value="">— select —</option>
+      {% for c in customers %}
+        <option value="{{ c.id }}">{{ c.name }}</option>
+      {% endfor %}
+    </select>
+  </label>
+
+  <label>Order date
+    <input type="date" name="order_date" value="{{ request.form.get('order_date','') }}">
+  </label>
+
+  <table id="items-table">
+    <thead>
+      <tr><th>Product</th><th>Qty</th><th>Rate</th><th>Amount</th><th></th></tr>
+    </thead>
+    <tbody id="items-body">
+      <!-- filled by JS / first row rendered server-side -->
+      <tr>
+        <td>
+          <select name="product_id[]" class="product-select" required>
+            <option value="">— select —</option>
+            {% for p in products %}
+              <option value="{{ p.id }}" data-price="{{ p.price }}" data-stock="{{ p.stock_quantity }}">
+                {{ p.product_code }} — {{ p.name }} (stock {{ p.stock_quantity }})
+              </option>
+            {% endfor %}
+          </select>
+        </td>
+        <td><input type="number" name="quantity[]" class="qty" min="1" value="1" required></td>
+        <td class="rate">—</td>
+        <td class="amount">—</td>
+        <td><button type="button" class="remove-row">×</button></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">
+          <button type="button" id="add-row">+ Add product</button>
+        </td>
+        <td colspan="2"></td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <p>
+    <label>Discount % (0–20)
+      <input type="number" name="discount_percentage" id="discount" min="0" max="20" step="0.01"
+             value="{{ request.form.get('discount_percentage','0') }}">
+    </label>
+  </p>
+
+  <table class="totals">
+    <tr><th>Subtotal</th><td id="subtotal">0.00</td></tr>
+    <tr><th>Discount amount</th><td id="discount-amt">0.00</td></tr>
+    <tr><th>Grand total</th><td id="grand-total"><strong>0.00</strong></td></tr>
+  </table>
+
+  <button type="submit" id="save-btn">Save Draft</button>
+  <a href="{{ url_for('orders.list_orders') }}">Cancel</a>
+</form>
+
+<script src="{{ url_for('static', filename='js/orders.js') }}"></script>
+{% endblock %}

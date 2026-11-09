@@ -1,0 +1,6 @@
+product_code,product_name,category,price,stock_quantity,status
+PRD-101,Mechanical Keyboard,Accessories,2500.00,15,Active
+PRD-102,Gaming Mouse,Accessories,1200.00,25,Active
+PRD-103,27" 4K Monitor,Displays,25000.00,8,Active
+PRD-104,USB-C Hub,Accessories,1800.00,40,Active
+PRD-105,Wireless Headphones,Audio,4500.00,12,Active

@@ -1,0 +1,22 @@
+* { box-sizing: border-box; }
+body { font-family: system-ui, sans-serif; margin: 0; color: #222; background: #f7f7f7; }
+nav { background: #1f2937; color: #fff; padding: .75rem 1rem; display: flex; gap: 1rem; align-items: center; }
+nav a { color: #fff; text-decoration: none; }
+nav a:hover { text-decoration: underline; }
+nav .who { margin-left: auto; opacity: .8; font-size: .9rem; }
+main { max-width: 960px; margin: 1.5rem auto; padding: 0 1rem; }
+h1 { font-size: 1.5rem; }
+table { border-collapse: collapse; width: 100%; background: #fff; }
+th, td { padding: .5rem; border-bottom: 1px solid #ddd; text-align: left; }
+th { background: #eee; }
+.flash { padding: .6rem .8rem; border-radius: 4px; margin-bottom: .8rem; }
+.flash-error { background: #fee; color: #900; }
+.flash-warning { background: #fff5cc; color: #664d00; }
+.flash-info { background: #e6f5ff; color: #004080; }
+.flash-success { background: #e6ffed; color: #045d1f; }
+.login-wrap { max-width: 360px; margin: 3rem auto; background: #fff; padding: 1.5rem; border-radius: 6px; }
+.login-wrap label { display: block; margin-bottom: .8rem; }
+.login-wrap input { width: 100%; padding: .5rem; }
+.login-wrap button { width: 100%; padding: .6rem; background: #1f2937; color: #fff; border: 0; cursor: pointer; }
+.hint { font-size: .85rem; color: #555; margin-top: 1rem; }
+form.inline { display: inline; }

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Reports{% endblock %}
+{% block content %}
+<h1>Reports</h1>
+<ul class="report-links">
+  <li><a href="{{ url_for('reports.customer_sales') }}">Customer Sales Summary</a>
+      — total confirmed sales per customer, date-range filter</li>
+  <li><a href="{{ url_for('reports.product_sales') }}">Product Sales Summary</a>
+      — quantity sold + gross value per product (before discount)</li>
+  <li><a href="{{ url_for('reports.low_stock') }}">Low Stock Report</a>
+      — products below a chosen threshold</li>
+  <li><a href="{{ url_for('reports.stock_movements') }}">Stock Movement History</a>
+      — every stock change, with reasons and order references</li>
+</ul>
+{% endblock %}

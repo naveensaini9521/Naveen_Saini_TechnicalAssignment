@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Stock Movement History{% endblock %}
+{% block content %}
+<h1>Stock Movement History</h1>
+
+<form method="get" class="filters">
+  <label>Product ID <input name="product_id" value="{{ product_id }}"></label>
+  <label>From <input type="date" name="date_from" value="{{ date_from }}"></label>
+  <label>To   <input type="date" name="date_to"   value="{{ date_to }}"></label>
+  <button type="submit">Filter</button>
+</form>
+
+<table>
+  <thead>
+    <tr><th>When</th><th>Product</th><th>Type</th><th>Δ</th><th>Order</th><th>Reason</th></tr>
+  </thead>
+  <tbody>
+    {% for r in rows %}
+    <tr>
+      <td>{{ r.created_at[:16]|replace('T',' ') if r.created_at else '—' }}</td>
+      <td>{{ r.product_code }} — {{ r.product_name }}</td>
+      <td>{{ r.movement_type }}</td>
+      <td>{{ '%+d'|format(r.quantity_change) }}</td>
+      <td>{{ r.order_number or '—' }}</td>
+      <td>{{ r.reason or '—' }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="6">No movements.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

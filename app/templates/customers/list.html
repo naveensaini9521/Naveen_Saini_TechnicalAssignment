@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Customers{% endblock %}
+{% block content %}
+<h1>Customers</h1>
+
+<form method="get" class="filters">
+  <input type="search" name="q" placeholder="Search name / email / mobile" value="{{ search }}">
+  <select name="status">
+    <option value="all"      {% if status == 'all' %}selected{% endif %}>All</option>
+    <option value="active"   {% if status == 'active' %}selected{% endif %}>Active</option>
+    <option value="inactive" {% if status == 'inactive' %}selected{% endif %}>Inactive</option>
+  </select>
+  <button type="submit">Search</button>
+  {% if current_user.is_admin %}
+    <a class="btn" href="{{ url_for('customers.create') }}">+ New customer</a>
+  {% endif %}
+</form>
+
+<table>
+  <thead>
+    <tr><th>Name</th><th>Email</th><th>Mobile</th><th>City</th><th>Status</th><th></th></tr>
+  </thead>
+  <tbody>
+    {% for c in pagination.items %}
+    <tr>
+      <td>{{ c.name }}</td>
+      <td>{{ c.email or '—' }}</td>
+      <td>{{ c.mobile or '—' }}</td>
+      <td>{{ c.city or '—' }}</td>
+      <td>{{ c.status_label }}</td>
+      <td>
+        {% if current_user.is_admin %}
+          <a href="{{ url_for('customers.edit', customer_id=c.id) }}">Edit</a>
+          <form method="post" action="{{ url_for('customers.delete', customer_id=c.id) }}"
+                class="inline" onsubmit="return confirm('Delete this customer?');">
+            <button type="submit" class="link-danger">Delete</button>
+          </form>
+        {% endif %}
+      </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="6">No customers found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% include "_pagination.html" with context %}
+{% endblock %}

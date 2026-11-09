@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Order {{ order.order_number }}{% endblock %}
+{% block content %}
+<h1>Order {{ order.order_number }} <small>({{ order.status }})</small></h1>
+
+<table class="meta">
+  <tr><th>Customer</th><td>{{ order.customer.name if order.customer else '—' }}</td></tr>
+  <tr><th>Order date</th><td>{{ order.order_date }}</td></tr>
+  <tr><th>Created by</th><td>{{ order.creator.name if order.creator else '—' }}</td></tr>
+</table>
+
+<table>
+  <thead>
+    <tr><th>Product</th><th>Qty</th><th>Rate</th><th>Amount</th></tr>
+  </thead>
+  <tbody>
+    {% for item in order.items %}
+    <tr>
+      <td>{{ item.product.product_code }} — {{ item.product.name }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ '%.2f'|format(item.rate) }}</td>
+      <td>{{ '%.2f'|format(item.amount) }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<table class="totals">
+  <tr><th>Subtotal</th><td>{{ '%.2f'|format(order.subtotal) }}</td></tr>
+  <tr><th>Discount ({{ '%.2f'|format(order.discount_percentage) }}%)</th><td>{{ '%.2f'|format(order.discount_amount) }}</td></tr>
+  <tr><th>Grand total</th><td><strong>{{ '%.2f'|format(order.grand_total) }}</strong></td></tr>
+</table>
+
+<div class="actions">
+  {% if order.status == 'Draft' %}
+    <a href="{{ url_for('orders.edit', order_id=order.id) }}">Edit</a>
+
+    <form method="post" action="{{ url_for('orders.confirm', order_id=order.id) }}"
+          class="inline" onsubmit="return confirm('Confirm this order and deduct stock?');">
+      <button type="submit">Confirm</button>
+    </form>
+
+    <form method="post" action="{{ url_for('orders.cancel', order_id=order.id) }}"
+          class="inline" onsubmit="return confirm('Cancel this draft order?');">
+      <button type="submit">Cancel</button>
+    </form>
+  {% elif order.status == 'Confirmed' %}
+    <form method="post" action="{{ url_for('orders.cancel', order_id=order.id) }}"
+          class="inline" onsubmit="return confirm('Cancel this order and restore stock?');">
+      <button type="submit">Cancel order</button>
+    </form>
+  {% endif %}
+</div>
+
+<p><a href="{{ url_for('orders.list_orders') }}">← Back to orders</a></p>
+{% endblock %}

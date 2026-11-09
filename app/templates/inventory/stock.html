@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Stock{% endblock %}
+{% block content %}
+<h1>Stock Overview</h1>
+
+<div class="filters">
+  <a class="btn" href="{{ url_for('inventory.adjust') }}">+ Adjust stock</a>
+  <a class="btn" href="{{ url_for('inventory.movements') }}">View movements</a>
+</div>
+
+<table>
+  <thead>
+    <tr><th>Code</th><th>Name</th><th>Category</th><th>Stock</th><th>Price</th><th>Status</th></tr>
+  </thead>
+  <tbody>
+    {% for p in products %}
+    <tr>
+      <td>{{ p.product_code }}</td>
+      <td>{{ p.name }}</td>
+      <td>{{ p.category }}</td>
+      <td>{{ p.stock_quantity }}</td>
+      <td>{{ '%.2f'|format(p.price) }}</td>
+      <td>{{ p.status_label }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

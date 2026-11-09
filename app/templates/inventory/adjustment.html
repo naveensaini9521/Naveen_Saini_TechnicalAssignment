@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Adjust Stock{% endblock %}
+{% block content %}
+<h1>Adjust Stock</h1>
+
+<form method="post">
+  <label>Product *
+    <select name="product_id" required>
+      <option value="">— select —</option>
+      {% for p in products %}
+        <option value="{{ p.id }}">{{ p.product_code }} — {{ p.name }} (stock {{ p.stock_quantity }})</option>
+      {% endfor %}
+    </select>
+  </label>
+
+  <label>Quantity change *
+    <input type="number" name="quantity_change" required
+           placeholder="e.g. 5 to add, -3 to remove">
+    <small>Positive to add, negative to remove. Cannot make stock negative.</small>
+  </label>
+
+  <label>Reason *
+    <input name="reason" required maxlength="255">
+  </label>
+
+  <button type="submit">Apply</button>
+  <a href="{{ url_for('inventory.stock') }}">Cancel</a>
+</form>
+{% endblock %}

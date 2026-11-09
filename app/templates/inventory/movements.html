@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Stock Movements{% endblock %}
+{% block content %}
+<h1>Stock Movement History</h1>
+
+<form method="get" class="filters">
+  <select name="product_id">
+    <option value="">All products</option>
+    {% for p in products %}
+      <option value="{{ p.id }}" {% if selected_product_id == p.id %}selected{% endif %}>
+        {{ p.product_code }} — {{ p.name }}
+      </option>
+    {% endfor %}
+  </select>
+  <button type="submit">Filter</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>When</th><th>Product</th><th>Type</th><th>Δ</th>
+      <th>Order</th><th>Reason</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for m in pagination.items %}
+    <tr>
+      <td>{{ m.created_at.strftime('%Y-%m-%d %H:%M') if m.created_at else '—' }}</td>
+      <td>
+        {% if m.product %}
+          {{ m.product.product_code }} — {{ m.product.name }}
+        {% else %}—{% endif %}
+      </td>
+      <td>{{ m.movement_type }}</td>
+      <td class="{% if m.quantity_change > 0 %}delta-pos{% else %}delta-neg{% endif %}">
+        {{ '%+d'|format(m.quantity_change) }}
+      </td>
+      <td>{{ m.order.order_number if m.order else '—' }}</td>
+      <td>{{ m.reason or '—' }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="6">No movements found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% include "_pagination.html" with context %}
+{% endblock %}

@@ -1,0 +1,8 @@
+product_code,product_name,category,price,stock_quantity,status
+PRD-201,Good Product,Accessories,1000.00,10,Active
+PRD-201,Duplicate Code,Accessories,900.00,5,Active
+PRD-202,Negative Price,Accessories,-100.00,3,Active
+PRD-203,Bad Stock,Displays,200.00,-5,Active
+PRD-204,Not A Number,Displays,abc,10,Active
+PRD-205,Bad Status,Displays,300.00,10,Unknown
+,Missing Code,Displays,300.00,10,Active

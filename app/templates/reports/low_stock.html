@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Low Stock{% endblock %}
+{% block content %}
+<h1>Low Stock Report</h1>
+
+<form method="get" class="filters">
+  <label>Threshold <input type="number" name="threshold" min="0" value="{{ threshold }}" required></label>
+  <button type="submit">Show</button>
+</form>
+
+<table>
+  <thead><tr><th>Code</th><th>Product</th><th>Stock</th></tr></thead>
+  <tbody>
+    {% for r in rows %}
+    <tr>
+      <td>{{ r.product_code }}</td>
+      <td>{{ r.product_name }}</td>
+      <td>{{ r.stock_quantity }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="3">No products below threshold.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,33 @@
+.env
+.env.*
+!.env.example
+
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+instance/
+env/
+ENV/
+
+# ---- Flask / instance ----
+instance/
+*.db
+*.sqlite3
+
+# ---- OS / editors ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# ---- Logs / coverage ----
+*.log
+htmlcov/
+.coverage
+coverage.xml

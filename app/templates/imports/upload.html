@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Import Products{% endblock %}
+{% block content %}
+<h1>Import Products from CSV</h1>
+
+<p>
+  Upload a CSV with these columns (exact header names):
+  <code>product_code,product_name,category,price,stock_quantity,status</code>
+</p>
+
+<form method="post" enctype="multipart/form-data">
+  <input type="file" name="file" accept=".csv" required>
+  <button type="submit">Upload & Import</button>
+</form>
+
+<p class="hint">
+  Download samples:
+  <a href="{{ url_for('imports.sample', kind='valid') }}">valid_products.csv</a>
+  &middot;
+  <a href="{{ url_for('imports.sample', kind='invalid') }}">invalid_products.csv</a>
+</p>
+
+<p class="hint">
+  Import is <strong>all-or-nothing</strong> — if any row is invalid, no products are created.
+  Existing product codes are rejected.
+</p>
+{% endblock %}

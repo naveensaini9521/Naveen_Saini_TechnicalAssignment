@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h1>Dashboard</h1>
+
+<table>
+  <tr>
+    <th>Active customers</th>
+    <td>{{ stats.customers_active }}</td>
+  </tr>
+  <tr>
+    <th>Active products</th>
+    <td>{{ stats.products_active }}</td>
+  </tr>
+  <tr>
+    <th>Draft orders</th>
+    <td>{{ stats.orders_draft }}</td>
+  </tr>
+  <tr>
+    <th>Confirmed orders</th>
+    <td>{{ stats.orders_confirmed }}</td>
+  </tr>
+  <tr>
+    <th>Cancelled orders</th>
+    <td>{{ stats.orders_cancelled }}</td>
+  </tr>
+  <tr>
+    <th>Stock movements recorded</th>
+    <td>{{ stats.movements }}</td>
+  </tr>
+</table>
+
+<h2>Recent orders</h2>
+{% if recent_orders %}
+<table>
+  <thead>
+    <tr>
+      <th>Order #</th><th>Customer</th><th>Date</th><th>Status</th><th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for o in recent_orders %}
+    <tr>
+      <td><a href="{{ url_for('orders.detail', order_id=o.id) }}">{{ o.order_number }}</a></td>
+      <td>{{ o.customer.name if o.customer else '—' }}</td>
+      <td>{{ o.order_date }}</td>
+      <td>{{ o.status }}</td>
+      <td>{{ '%.2f'|format(o.grand_total) }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No orders yet.</p>
+{% endif %}
+{% endblock %}

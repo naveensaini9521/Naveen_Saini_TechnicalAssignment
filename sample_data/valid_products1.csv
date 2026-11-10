@@ -1,0 +1,51 @@
+product_code,product_name,category,price,stock_quantity,status
+PRD-V001,Wireless Keyboard,Accessories,1500.00,50,Active
+PRD-V002,Gaming Mouse,Accessories,2200.00,40,Active
+PRD-V003,USB-C Hub 7-Port,Accessories,1800.00,35,Active
+PRD-V004,Mechanical Keyboard RGB,Accessories,4500.00,25,Active
+PRD-V005,Ergonomic Mouse Pad,Accessories,350.00,60,Active
+PRD-V006,Bluetooth Earbuds,Audio,3500.00,30,Active
+PRD-V007,Over-Ear Headphones,Audio,8500.00,20,Active
+PRD-V008,Portable Speaker,Audio,4200.00,25,Active
+PRD-V009,Soundbar 2.1,Audio,12000.00,15,Active
+PRD-V010,Noise Cancelling Headphones,Audio,15000.00,10,Active
+PRD-V011,24-inch Full HD Monitor,Displays,12000.00,20,Active
+PRD-V012,27-inch 4K Monitor,Displays,28000.00,12,Active
+PRD-V013,32-inch Curved Monitor,Displays,35000.00,8,Active
+PRD-V014,Portable Monitor 15.6,Displays,18000.00,15,Active
+PRD-V015,Ultrawide 34-inch Monitor,Displays,55000.00,5,Active
+PRD-V016,Laptop Stand Aluminium,Furniture,2200.00,40,Active
+PRD-V017,Monitor Arm Single,Furniture,4500.00,25,Active
+PRD-V018,Monitor Arm Dual,Furniture,7500.00,18,Active
+PRD-V019,Desk Lamp LED,Furniture,1800.00,35,Active
+PRD-V020,Standing Desk Converter,Furniture,12000.00,10,Active
+PRD-V021,USB Flash Drive 64GB,Storage,800.00,100,Active
+PRD-V022,USB Flash Drive 128GB,Storage,1400.00,80,Active
+PRD-V023,External HDD 1TB,Storage,4500.00,40,Active
+PRD-V024,External HDD 2TB,Storage,7000.00,30,Active
+PRD-V025,External SSD 500GB,Storage,5500.00,25,Active
+PRD-V026,External SSD 1TB,Storage,9500.00,20,Active
+PRD-V027,MicroSD Card 128GB,Storage,1800.00,60,Active
+PRD-V028,MicroSD Card 256GB,Storage,3200.00,45,Active
+PRD-V029,NAS Drive 4TB,Storage,18000.00,10,Active
+PRD-V030,NAS Drive 8TB,Storage,32000.00,6,Active
+PRD-V031,HD Webcam 1080p,Cameras,3500.00,30,Active
+PRD-V032,4K Webcam,Cameras,8500.00,18,Active
+PRD-V033,Conference Webcam,Cameras,25000.00,8,Active
+PRD-V034,Ring Light 12-inch,Cameras,2200.00,25,Active
+PRD-V035,Phone Tripod,Cameras,1200.00,35,Active
+PRD-V036,USB-C to HDMI Adapter,Cables,1500.00,50,Active
+PRD-V037,USB-C to USB-A Adapter,Cables,600.00,80,Active
+PRD-V038,HDMI Cable 2m,Cables,450.00,100,Active
+PRD-V039,USB-C Cable 2m,Cables,550.00,90,Active
+PRD-V040,Thunderbolt Cable,Cables,3200.00,20,Active
+PRD-V041,Wireless Charger 15W,Chargers,1800.00,40,Active
+PRD-V042,60W USB-C Charger,Chargers,2200.00,35,Active
+PRD-V043,100W USB-C Charger,Chargers,3800.00,25,Active
+PRD-V044,Power Bank 10000mAh,Chargers,1500.00,50,Active
+PRD-V045,Power Bank 20000mAh,Chargers,2800.00,30,Active
+PRD-V046,Wireless Presenter,Accessories,1200.00,25,Active
+PRD-V047,Laptop Sleeve 14-inch,Accessories,900.00,40,Active
+PRD-V048,Laptop Backpack,Bags,2200.00,30,Active
+PRD-V049,Cable Organizer Set,Accessories,350.00,70,Active
+PRD-V050,Screen Cleaning Kit,Accessories,250.00,100,Active

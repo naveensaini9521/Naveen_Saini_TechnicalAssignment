@@ -1,0 +1,52 @@
+product_code,product_name,category,price,stock_quantity,status
+PRD-I001,Valid Product Base,Test,1000.00,10,Active
+PRD-I002,Duplicate Code,Test,900.00,15,Active
+PRD-I002,Duplicate Code Same File,Test,800.00,20,Active
+PRD-I003,Negative Price,Test,-500.00,10,Active
+PRD-I004,Negative Stock,Test,500.00,-10,Active
+PRD-I005,Non Numeric Price,Test,abc,10,Active
+PRD-I006,Non Numeric Stock,Test,500.00,xyz,Active
+PRD-I007,Invalid Status,BogusStatus,500.00,10,Active
+PRD-I008,Invalid Status Value,Test,500.00,10,Unknown
+,Missing Code,Test,500.00,10,Active
+PRD-I010,,Test,500.00,10,Active
+PRD-I011,Missing Category,,500.00,10,Active
+PRD-I012,Empty Price,,,10,Active
+PRD-I013,Empty Stock,,,500.00,Active
+PRD-I014,Zero Price But Valid,Test,0.00,10,Active
+PRD-I015,Decimal Price,Test,99.999,10,Active
+PRD-I016,Very Long Product Name That Exceeds Maximum Field Length Allowed By The System And Should Be Rejected,Test,500.00,10,Active
+PRD-I017,Status Empty,Test,500.00,10,
+PRD-I018,Price With Comma,Test,"1,500.00",10,Active
+PRD-I019,Price With Spaces,Test, 500.00 ,10,Active
+PRD-I020,Stock Negative Large,Test,500.00,-9999,Active
+PRD-I021,Invalid Character Code,Test!@#,Test,500.00,10,Active
+PRD-I022,Product Name With Semicolon,Test;Drop,500.00,10,Active
+PRD-I023,Extremely High Price,Test,999999999999999,10,Active
+PRD-I024,Extremely High Stock,Test,500.00,999999999999,Active
+PRD-I025,Bad Price Text,Test,price,10,Active
+PRD-I026,Bad Stock Text,Test,500.00,quantity,Active
+PRD-I027,Invalid Status Lowercase,badstatus,500.00,10,inactive
+PRD-I028,Invalid Status Mixed Case,BadStatus,500.00,10,InActive
+PRD-I029,Missing Everything,,,,
+PRD-I030,,,,
+PRD-I031,Price Float Too Many Decimals,Test,100.123456,10,Active
+PRD-I032,Stock Float,Test,500.00,10.5,Active
+PRD-I033,Stock String,Test,500.00,twenty,Active
+PRD-I034,Price Boolean,Test,true,10,Active
+PRD-I035,Status Number,Test,500.00,10,1
+PRD-I036,Status Null,Test,500.00,10,
+PRD-I037,Duplicate Already In DB,Test,500.00,10,Active
+PRD-I038,SQL Injection Attempt,Test,500.00,10,Active'; DROP TABLE products;--
+PRD-I039,XSS Attempt,Bad,500.00,10,<script>alert(1)</script>
+PRD-I040,Very Long Code That Exceeds Fifty Characters Maximum Allowed For Product Code And Must Be Rejected,Test,500.00,10,Active
+PRD-I041,Negative Zero Price,Test,-0.01,10,Active
+PRD-I042,Huge Negative Stock,Test,500.00,-999999,Active
+PRD-I043,Invalid Unicode Category,テスト,500.00,10,Active
+PRD-I044,Price With Dollar Sign,Test,$500.00,10,Active
+PRD-I045,Stock With Plus Sign,Test,500.00,+10,Active
+PRD-I046,Price With Percent,Test,50%,10,Active
+PRD-I047,Category Empty String,Test,,500.00,10,Active
+PRD-I048,Status Extra Spaces,Test,500.00,10,  Active  
+PRD-I049,Price Negative Zero Float,Test,-0.005,10,Active
+PRD-I050,Code With Spaces,PRD I050,Test,500.00,10,Active

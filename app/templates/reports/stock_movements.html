@@ -1,32 +1,58 @@
 {% extends "base.html" %}
 {% block title %}Stock Movement History{% endblock %}
 {% block content %}
-<h1>Stock Movement History</h1>
+
+<div class="page-header">
+  <h1>Stock Movement History</h1>
+  <a href="{{ url_for('reports.home') }}" class="btn secondary">← Back to reports</a>
+</div>
 
 <form method="get" class="filters">
-  <label>Product ID <input name="product_id" value="{{ product_id }}"></label>
+  <label>Product ID <input name="product_id" value="{{ product_id }}" placeholder="optional"></label>
   <label>From <input type="date" name="date_from" value="{{ date_from }}"></label>
   <label>To   <input type="date" name="date_to"   value="{{ date_to }}"></label>
   <button type="submit">Filter</button>
+  {% if product_id or date_from or date_to %}
+    <a href="{{ url_for('reports.stock_movements') }}" class="btn secondary">Clear</a>
+  {% endif %}
 </form>
 
 <table>
   <thead>
-    <tr><th>When</th><th>Product</th><th>Type</th><th>Δ</th><th>Order</th><th>Reason</th></tr>
+    <tr>
+      <th>When</th>
+      <th>Product</th>
+      <th>Type</th>
+      <th class="num">Δ</th>
+      <th>Order</th>
+      <th>Reason</th>
+    </tr>
   </thead>
   <tbody>
     {% for r in rows %}
     <tr>
       <td>{{ r.created_at[:16]|replace('T',' ') if r.created_at else '—' }}</td>
-      <td>{{ r.product_code }} — {{ r.product_name }}</td>
+      <td>
+        {% if r.product_code %}
+          <code class="code-pill">{{ r.product_code }}</code>
+          {{ r.product_name }}
+        {% else %}—{% endif %}
+      </td>
       <td>{{ r.movement_type }}</td>
-      <td>{{ '%+d'|format(r.quantity_change) }}</td>
-      <td>{{ r.order_number or '—' }}</td>
+      <td class="num {% if r.quantity_change > 0 %}delta-pos{% else %}delta-neg{% endif %}">
+        {{ '%+d'|format(r.quantity_change) }}
+      </td>
+      <td>
+        {% if r.order_number %}
+          <code class="code-pill">{{ r.order_number }}</code>
+        {% else %}—{% endif %}
+      </td>
       <td>{{ r.reason or '—' }}</td>
     </tr>
     {% else %}
-    <tr><td colspan="6">No movements.</td></tr>
+    <tr><td colspan="6" class="empty-row">No movements.</td></tr>
     {% endfor %}
   </tbody>
 </table>
+
 {% endblock %}

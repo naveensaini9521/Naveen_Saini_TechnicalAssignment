@@ -1,61 +1,90 @@
 {% extends "base.html" %}
 {% block title %}Edit Order {{ order.order_number }}{% endblock %}
 {% block content %}
-<h1>Edit Order {{ order.order_number }}</h1>
+
+<div class="page-header">
+  <h1>
+    Edit Order <code class="code-pill">{{ order.order_number }}</code>
+    <span class="pill pill-amber">Draft</span>
+  </h1>
+  <a href="{{ url_for('orders.detail', order_id=order.id) }}" class="btn secondary">← Back to order</a>
+</div>
+
+<div class="detail-grid">
+  <div class="detail-card">
+    <div class="detail-label">Customer</div>
+    <div class="detail-value">{{ order.customer.name if order.customer else '—' }}</div>
+  </div>
+  <div class="detail-card">
+    <div class="detail-label">Order date</div>
+    <div class="detail-value">{{ order.order_date }}</div>
+  </div>
+</div>
 
 <form method="post" id="order-form">
-  <p><strong>Customer:</strong> {{ order.customer.name }}</p>
-  <p><strong>Order date:</strong> {{ order.order_date }}</p>
 
-  <table id="items-table">
-    <thead>
-      <tr><th>Product</th><th>Qty</th><th>Rate</th><th>Amount</th><th></th></tr>
-    </thead>
-    <tbody id="items-body">
-      {% for item in order.items %}
-      <tr>
-        <td>
-          <select name="product_id[]" class="product-select" required>
-            <option value="">— select —</option>
-            {% for p in products %}
-              <option value="{{ p.id }}"
-                      data-price="{{ p.price }}" data-stock="{{ p.stock_quantity }}"
-                      {% if p.id == item.product_id %}selected{% endif %}>
-                {{ p.product_code }} — {{ p.name }} (stock {{ p.stock_quantity }})
-              </option>
-            {% endfor %}
-          </select>
-        </td>
-        <td><input type="number" name="quantity[]" class="qty" min="1" value="{{ item.quantity }}" required></td>
-        <td class="rate">{{ '%.2f'|format(item.rate) }}</td>
-        <td class="amount">{{ '%.2f'|format(item.amount) }}</td>
-        <td><button type="button" class="remove-row">×</button></td>
-      </tr>
-      {% endfor %}
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="3"><button type="button" id="add-row">+ Add product</button></td>
-        <td colspan="2"></td>
-      </tr>
-    </tfoot>
-  </table>
+  <h2>Items</h2>
 
-  <p>
-    <label>Discount %
-      <input type="number" name="discount_percentage" id="discount" min="0" max="20" step="0.01"
+  <div class="table-card">
+    <table id="items-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th class="num" style="width:100px;">Qty</th>
+          <th class="num" style="width:120px;">Rate</th>
+          <th class="num" style="width:120px;">Amount</th>
+          <th style="width:50px;"></th>
+        </tr>
+      </thead>
+      <tbody id="items-body">
+        {% for item in order.items %}
+        <tr>
+          <td>
+            <select name="product_id[]" class="product-select" required>
+              <option value="">— select —</option>
+              {% for p in products %}
+                <option value="{{ p.id }}"
+                        data-price="{{ p.price }}"
+                        data-stock="{{ p.stock_quantity }}"
+                        {% if p.id == item.product_id %}selected{% endif %}>
+                  {{ p.product_code }} — {{ p.name }} (stock {{ p.stock_quantity }})
+                </option>
+              {% endfor %}
+            </select>
+          </td>
+          <td><input type="number" name="quantity[]" class="qty num" min="1" value="{{ item.quantity }}" required></td>
+          <td class="rate num">{{ '%.2f'|format(item.rate) }}</td>
+          <td class="amount num">{{ '%.2f'|format(item.amount) }}</td>
+          <td><button type="button" class="remove-row link-danger" aria-label="Remove row">×</button></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="table-actions">
+      <button type="button" id="add-row" class="secondary">+ Add product</button>
+    </div>
+  </div>
+
+  <div class="form-card totals-card">
+    <label>Discount % (0–20)
+      <input type="number" name="discount_percentage" id="discount"
+             min="0" max="20" step="0.01"
              value="{{ order.discount_percentage }}">
     </label>
-  </p>
 
-  <table class="totals">
-    <tr><th>Subtotal</th><td id="subtotal">{{ '%.2f'|format(order.subtotal) }}</td></tr>
-    <tr><th>Discount amount</th><td id="discount-amt">{{ '%.2f'|format(order.discount_amount) }}</td></tr>
-    <tr><th>Grand total</th><td id="grand-total"><strong>{{ '%.2f'|format(order.grand_total) }}</strong></td></tr>
-  </table>
+    <table class="totals">
+      <tr><th>Subtotal</th><td id="subtotal">{{ '%.2f'|format(order.subtotal) }}</td></tr>
+      <tr><th>Discount amount</th><td id="discount-amt">{{ '%.2f'|format(order.discount_amount) }}</td></tr>
+      <tr><th>Grand total</th><td id="grand-total"><strong>{{ '%.2f'|format(order.grand_total) }}</strong></td></tr>
+    </table>
+  </div>
 
-  <button type="submit" id="save-btn">Save Draft</button>
-  <a href="{{ url_for('orders.detail', order_id=order.id) }}">Cancel</a>
+  <div class="action-bar">
+    <button type="submit" id="save-btn">Save changes</button>
+    <a href="{{ url_for('orders.detail', order_id=order.id) }}" class="btn secondary">Cancel</a>
+  </div>
+
 </form>
 
 <script src="{{ url_for('static', filename='js/orders.js') }}"></script>

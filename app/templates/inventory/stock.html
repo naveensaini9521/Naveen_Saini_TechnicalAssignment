@@ -1,28 +1,48 @@
 {% extends "base.html" %}
 {% block title %}Stock{% endblock %}
 {% block content %}
-<h1>Stock Overview</h1>
 
-<div class="filters">
-  <a class="btn" href="{{ url_for('inventory.adjust') }}">+ Adjust stock</a>
-  <a class="btn" href="{{ url_for('inventory.movements') }}">View movements</a>
+<div class="page-header">
+  <h1>Stock Overview</h1>
+  <div class="header-actions">
+    <a class="btn secondary" href="{{ url_for('inventory.movements') }}">View movements</a>
+    <a class="btn" href="{{ url_for('inventory.adjust') }}">+ Adjust stock</a>
+  </div>
 </div>
 
 <table>
   <thead>
-    <tr><th>Code</th><th>Name</th><th>Category</th><th>Stock</th><th>Price</th><th>Status</th></tr>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th class="num">Stock</th>
+      <th class="num">Price</th>
+      <th>Status</th>
+    </tr>
   </thead>
   <tbody>
     {% for p in products %}
     <tr>
-      <td>{{ p.product_code }}</td>
-      <td>{{ p.name }}</td>
+      <td><code class="code-pill">{{ p.product_code }}</code></td>
+      <td><strong>{{ p.name }}</strong></td>
       <td>{{ p.category }}</td>
-      <td>{{ p.stock_quantity }}</td>
-      <td>{{ '%.2f'|format(p.price) }}</td>
-      <td>{{ p.status_label }}</td>
+      <td class="num">
+        {% if p.stock_quantity == 0 %}
+          <span class="pill pill-rose">0</span>
+        {% elif p.stock_quantity < 10 %}
+          <span class="pill pill-amber">{{ p.stock_quantity }}</span>
+        {% else %}
+          <span class="pill pill-green">{{ p.stock_quantity }}</span>
+        {% endif %}
+      </td>
+      <td class="num">{{ '%.2f'|format(p.price) }}</td>
+      <td><span class="pill {{ 'pill-green' if p.is_active else 'pill-grey' }}">{{ p.status_label }}</span></td>
     </tr>
+    {% else %}
+    <tr><td colspan="6" class="empty-row">No products yet.</td></tr>
     {% endfor %}
   </tbody>
 </table>
+
 {% endblock %}

@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Stock Movements{% endblock %}
 {% block content %}
-<h1>Stock Movement History</h1>
+
+<div class="page-header">
+  <h1>Stock Movement History</h1>
+  <a href="{{ url_for('inventory.stock') }}" class="btn secondary">← Back</a>
+</div>
 
 <form method="get" class="filters">
   <select name="product_id">
@@ -13,13 +17,20 @@
     {% endfor %}
   </select>
   <button type="submit">Filter</button>
+  {% if selected_product_id %}
+    <a href="{{ url_for('inventory.movements') }}" class="btn secondary">Clear</a>
+  {% endif %}
 </form>
 
 <table>
   <thead>
     <tr>
-      <th>When</th><th>Product</th><th>Type</th><th>Δ</th>
-      <th>Order</th><th>Reason</th>
+      <th>When</th>
+      <th>Product</th>
+      <th>Type</th>
+      <th class="num">Δ</th>
+      <th>Order</th>
+      <th>Reason</th>
     </tr>
   </thead>
   <tbody>
@@ -28,18 +39,23 @@
       <td>{{ m.created_at.strftime('%Y-%m-%d %H:%M') if m.created_at else '—' }}</td>
       <td>
         {% if m.product %}
-          {{ m.product.product_code }} — {{ m.product.name }}
+          <code class="code-pill">{{ m.product.product_code }}</code>
+          {{ m.product.name }}
         {% else %}—{% endif %}
       </td>
       <td>{{ m.movement_type }}</td>
-      <td class="{% if m.quantity_change > 0 %}delta-pos{% else %}delta-neg{% endif %}">
+      <td class="num {% if m.quantity_change > 0 %}delta-pos{% else %}delta-neg{% endif %}">
         {{ '%+d'|format(m.quantity_change) }}
       </td>
-      <td>{{ m.order.order_number if m.order else '—' }}</td>
+      <td>
+        {% if m.order %}
+          <code class="code-pill">{{ m.order.order_number }}</code>
+        {% else %}—{% endif %}
+      </td>
       <td>{{ m.reason or '—' }}</td>
     </tr>
     {% else %}
-    <tr><td colspan="6">No movements found.</td></tr>
+    <tr><td colspan="6" class="empty-row">No movements recorded.</td></tr>
     {% endfor %}
   </tbody>
 </table>

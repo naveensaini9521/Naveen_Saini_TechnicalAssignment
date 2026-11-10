@@ -1,29 +1,44 @@
 {% extends "base.html" %}
 {% block title %}Product Sales Summary{% endblock %}
 {% block content %}
-<h1>Product Sales Summary</h1>
+
+<div class="page-header">
+  <h1>Product Sales Summary</h1>
+  <a href="{{ url_for('reports.home') }}" class="btn secondary">← Back to reports</a>
+</div>
 
 <form method="get" class="filters">
   <label>From <input type="date" name="date_from" value="{{ date_from }}"></label>
   <label>To   <input type="date" name="date_to"   value="{{ date_to }}"></label>
   <button type="submit">Apply</button>
+  {% if date_from or date_to %}
+    <a href="{{ url_for('reports.product_sales') }}" class="btn secondary">Clear</a>
+  {% endif %}
 </form>
 
 <table>
   <thead>
-    <tr><th>Code</th><th>Product</th><th>Qty sold</th><th>Gross value</th></tr>
+    <tr>
+      <th>Code</th>
+      <th>Product</th>
+      <th class="num">Qty sold</th>
+      <th class="num">Gross value</th>
+    </tr>
   </thead>
   <tbody>
     {% for r in rows %}
     <tr>
-      <td>{{ r.product_code }}</td>
+      <td><code class="code-pill">{{ r.product_code }}</code></td>
       <td>{{ r.product_name }}</td>
-      <td>{{ r.qty_sold }}</td>
-      <td>{{ '%.2f'|format(r.gross_value) }}</td>
+      <td class="num">{{ r.qty_sold }}</td>
+      <td class="num">{{ '%.2f'|format(r.gross_value) }}</td>
     </tr>
     {% else %}
-    <tr><td colspan="4">No confirmed sales.</td></tr>
+    <tr><td colspan="4" class="empty-row">No confirmed sales in this range.</td></tr>
     {% endfor %}
   </tbody>
 </table>
+
+<p class="hint">Gross value is <strong>before order-level discount</strong> — matches the assignment spec.</p>
+
 {% endblock %}

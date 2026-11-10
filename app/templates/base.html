@@ -1,35 +1,57 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Sales &amp; Inventory{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
-    {% if current_user.is_authenticated %}
-    <nav>
-    <a href="{{ url_for('dashboard.index') }}">Home</a>
-    <a href="{{ url_for('customers.list_customers_view') }}">Customers</a>
-    <a href="{{ url_for('products.list_products_view') }}">Products</a>
-    <a href="{{ url_for('orders.list_orders') }}">Orders</a>
-    {% if current_user.is_admin %}
-        <a href="{{ url_for('inventory.stock') }}">Inventory</a>
-        <a href="{{ url_for('reports.home') }}">Reports</a>
-        <a href="{{ url_for('imports.upload') }}">Import CSV</a>
-    {% endif %}
-    <span class="who">{{ current_user.name }} ({{ current_user.role }})</span>
-    <a href="{{ url_for('auth.logout') }}">Logout</a>
-    </nav>
-    {% endif %}
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
 
-    <main>
+  {% if current_user.is_authenticated %}
+  <header class="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center gap-6 flex-wrap">
+      <a href="{{ url_for('dashboard.index') }}" class="text-lg font-bold tracking-tight">
+        📊 Sales &amp; Inventory
+      </a>
+      <nav class="flex items-center gap-1 flex-wrap text-sm">
+        <a href="{{ url_for('dashboard.index') }}" class="px-3 py-1.5 rounded hover:bg-slate-700 transition">Home</a>
+        <a href="{{ url_for('customers.list_customers_view') }}" class="px-3 py-1.5 rounded hover:bg-slate-700 transition">Customers</a>
+        <a href="{{ url_for('products.list_products_view') }}" class="px-3 py-1.5 rounded hover:bg-slate-700 transition">Products</a>
+        <a href="{{ url_for('orders.list_orders') }}" class="px-3 py-1.5 rounded hover:bg-slate-700 transition">Orders</a>
+        {% if current_user.is_admin %}
+          <a href="{{ url_for('inventory.stock') }}" class="px-3 py-1.5 rounded hover:bg-slate-700 transition">Inventory</a>
+          <a href="{{ url_for('reports.home') }}" class="px-3 py-1.5 rounded hover:bg-slate-700 transition">Reports</a>
+          <a href="{{ url_for('imports.upload') }}" class="px-3 py-1.5 rounded hover:bg-slate-700 transition">Import CSV</a>
+        {% endif %}
+      </nav>
+      <div class="ml-auto flex items-center gap-3 text-sm">
+        <span class="text-slate-300">
+          {{ current_user.name }}
+          <span class="px-2 py-0.5 rounded bg-slate-700 text-xs">{{ current_user.role }}</span>
+        </span>
+        <a href="{{ url_for('auth.logout') }}" class="px-3 py-1.5 rounded bg-slate-700 hover:bg-slate-600 transition">Logout</a>
+      </div>
+    </div>
+  </header>
+  {% endif %}
+
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-8">
     {% with messages = get_flashed_messages(with_categories=true) %}
-        {% for category, message in messages %}
-        <div class="flash flash-{{ category }}">{{ message }}</div>
-        {% endfor %}
+      {% if messages %}
+        <div class="space-y-2 mb-6">
+          {% for category, message in messages %}
+            <div class="flash flash-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
     {% endwith %}
-
     {% block content %}{% endblock %}
-    </main>
+  </main>
+
+  <footer class="bg-slate-100 text-slate-500 text-center text-xs py-4 border-t">
+    Sales &amp; Inventory Management · Built with Flask + MySQL
+  </footer>
 </body>
 </html>

@@ -1,18 +1,40 @@
 {% extends "base.html" %}
 {% block title %}Edit Customer{% endblock %}
 {% block content %}
-<h1>Edit Customer</h1>
 
-<form method="post">
-  <label>Name * <input name="name" value="{{ customer.name }}" required></label>
-  <label>Email <input name="email" type="email" value="{{ customer.email or '' }}"></label>
-  <label>Mobile <input name="mobile" value="{{ customer.mobile or '' }}"></label>
-  <label>City <input name="city" value="{{ customer.city or '' }}"></label>
-  <label>
+<div class="page-header">
+  <h1>Edit Customer</h1>
+  <a href="{{ url_for('customers.list_customers_view') }}" class="btn secondary">← Back</a>
+</div>
+
+<form method="post" class="form-card">
+  <div class="form-row">
+    <label>Name *
+      <input name="name" value="{{ customer.name }}" required>
+    </label>
+    <label>City
+      <input name="city" value="{{ customer.city or '' }}">
+    </label>
+  </div>
+
+  <div class="form-row">
+    <label>Email
+      <input name="email" type="email" value="{{ customer.email or '' }}">
+    </label>
+    <label>Mobile
+      <input name="mobile" value="{{ customer.mobile or '' }}">
+    </label>
+  </div>
+
+  <label class="checkbox-label">
     <input type="checkbox" name="is_active" value="1" {% if customer.is_active %}checked{% endif %}>
     Active
   </label>
-  <button type="submit">Save</button>
-  <a href="{{ url_for('customers.list_customers_view') }}">Cancel</a>
+
+  <div class="action-bar">
+    <button type="submit">Save changes</button>
+    <a href="{{ url_for('customers.list_customers_view') }}" class="btn secondary">Cancel</a>
+  </div>
 </form>
+
 {% endblock %}

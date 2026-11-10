@@ -1,29 +1,47 @@
 {% extends "base.html" %}
 {% block title %}Orders{% endblock %}
 {% block content %}
-<h1>Sales Orders</h1>
 
-<div class="filters">
+<div class="page-header">
+  <h1>Sales Orders</h1>
   <a class="btn" href="{{ url_for('orders.create') }}">+ New order</a>
 </div>
 
 <table>
   <thead>
-    <tr><th>Order #</th><th>Customer</th><th>Date</th><th>Status</th><th>Total</th><th>Created by</th><th></th></tr>
+    <tr>
+      <th>Order #</th>
+      <th>Customer</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th class="num">Total</th>
+      <th>Created by</th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     {% for o in pagination.items %}
     <tr>
-      <td>{{ o.order_number }}</td>
+      <td><code class="code-pill">{{ o.order_number }}</code></td>
       <td>{{ o.customer.name if o.customer else '—' }}</td>
       <td>{{ o.order_date }}</td>
-      <td>{{ o.status }}</td>
-      <td>{{ '%.2f'|format(o.grand_total) }}</td>
+      <td>
+        {% if o.status == 'Confirmed' %}
+          <span class="pill pill-green">Confirmed</span>
+        {% elif o.status == 'Cancelled' %}
+          <span class="pill pill-rose">Cancelled</span>
+        {% else %}
+          <span class="pill pill-amber">Draft</span>
+        {% endif %}
+      </td>
+      <td class="num">{{ '%.2f'|format(o.grand_total) }}</td>
       <td>{{ o.creator.name if o.creator else '—' }}</td>
-      <td><a href="{{ url_for('orders.detail', order_id=o.id) }}">View</a></td>
+      <td class="actions">
+        <a href="{{ url_for('orders.detail', order_id=o.id) }}" class="action-link">View</a>
+      </td>
     </tr>
     {% else %}
-    <tr><td colspan="7">No orders found.</td></tr>
+    <tr><td colspan="7" class="empty-row">No orders yet. Click <strong>+ New order</strong> to start.</td></tr>
     {% endfor %}
   </tbody>
 </table>

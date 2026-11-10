@@ -1,15 +1,26 @@
 {% extends "base.html" %}
 {% block title %}Reports{% endblock %}
 {% block content %}
+
 <h1>Reports</h1>
+
 <ul class="report-links">
-  <li><a href="{{ url_for('reports.customer_sales') }}">Customer Sales Summary</a>
-      — total confirmed sales per customer, date-range filter</li>
-  <li><a href="{{ url_for('reports.product_sales') }}">Product Sales Summary</a>
-      — quantity sold + gross value per product (before discount)</li>
-  <li><a href="{{ url_for('reports.low_stock') }}">Low Stock Report</a>
-      — products below a chosen threshold</li>
-  <li><a href="{{ url_for('reports.stock_movements') }}">Stock Movement History</a>
-      — every stock change, with reasons and order references</li>
+  <li>
+    <a href="{{ url_for('reports.customer_sales') }}">Customer Sales Summary</a>
+    <p class="report-desc">Total confirmed sales per customer, with date-range filter. Includes customers with zero orders.</p>
+  </li>
+  <li>
+    <a href="{{ url_for('reports.product_sales') }}">Product Sales Summary</a>
+    <p class="report-desc">Quantity sold and gross value per product (before order discount). Confirmed orders only.</p>
+  </li>
+  <li>
+    <a href="{{ url_for('reports.low_stock') }}">Low Stock Report</a>
+    <p class="report-desc">Products whose stock is below a chosen threshold.</p>
+  </li>
+  <li>
+    <a href="{{ url_for('reports.stock_movements') }}">Stock Movement History</a>
+    <p class="report-desc">Every stock change with reason and order reference.</p>
+  </li>
 </ul>
+
 {% endblock %}

@@ -1,29 +1,37 @@
 {% extends "base.html" %}
 {% block title %}Adjust Stock{% endblock %}
 {% block content %}
-<h1>Adjust Stock</h1>
 
-<form method="post">
+<div class="page-header">
+  <h1>Adjust Stock</h1>
+  <a href="{{ url_for('inventory.stock') }}" class="btn secondary">← Back</a>
+</div>
+
+<form method="post" class="form-card">
   <label>Product *
     <select name="product_id" required>
       <option value="">— select —</option>
       {% for p in products %}
-        <option value="{{ p.id }}">{{ p.product_code }} — {{ p.name }} (stock {{ p.stock_quantity }})</option>
+        <option value="{{ p.id }}">
+          {{ p.product_code }} — {{ p.name }} (stock {{ p.stock_quantity }})
+        </option>
       {% endfor %}
     </select>
   </label>
 
   <label>Quantity change *
-    <input type="number" name="quantity_change" required
-           placeholder="e.g. 5 to add, -3 to remove">
-    <small>Positive to add, negative to remove. Cannot make stock negative.</small>
+    <input type="number" name="quantity_change" required placeholder="e.g. 5 to add, -3 to remove">
   </label>
+  <p class="hint">Positive number to add stock, negative to remove. Cannot make stock negative.</p>
 
   <label>Reason *
-    <input name="reason" required maxlength="255">
+    <input name="reason" required maxlength="255" placeholder="e.g. Restock from supplier / Damaged goods">
   </label>
 
-  <button type="submit">Apply</button>
-  <a href="{{ url_for('inventory.stock') }}">Cancel</a>
+  <div class="action-bar">
+    <button type="submit">Apply adjustment</button>
+    <a href="{{ url_for('inventory.stock') }}" class="btn secondary">Cancel</a>
+  </div>
 </form>
+
 {% endblock %}

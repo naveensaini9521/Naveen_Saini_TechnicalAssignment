@@ -48,4 +48,18 @@ PRD-V046,Wireless Presenter,Accessories,1200.00,25,Active
 PRD-V047,Laptop Sleeve 14-inch,Accessories,900.00,40,Active
 PRD-V048,Laptop Backpack,Bags,2200.00,30,Active
 PRD-V049,Cable Organizer Set,Accessories,350.00,70,Active
+<<<<<<< HEAD
 PRD-V050,Screen Cleaning Kit,Accessories,250.00,100,Active
+=======
+PRD-V050,Screen Cleaning Kit,Accessories,250.00,100,Active
+PRD-V051,Smart Watch Band,Accessories,1200.00,45,Active
+PRD-V052,Fitness Tracker,Accessories,4500.00,20,Active
+PRD-V053,Wireless Mouse,Accessories,900.00,55,Active
+PRD-V054,Bluetooth Adapter,Accessories,650.00,70,Active
+PRD-V055,USB Hub 4-Port,Accessories,750.00,60,Active
+PRD-V056,Docking Station,Accessories,8500.00,15,Active
+PRD-V057,Laptop Cooling Pad,Accessories,1800.00,30,Active
+PRD-V058,Phone Stand,Accessories,450.00,80,Active
+PRD-V059,Tablet Stand,Accessories,850.00,50,Active
+PRD-V060,Webcam Privacy Cover,Accessories,250.00,120,Active
+>>>>>>> feature-api-and-tests

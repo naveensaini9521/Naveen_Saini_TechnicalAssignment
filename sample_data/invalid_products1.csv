@@ -1,7 +1,12 @@
 product_code,product_name,category,price,stock_quantity,status
 PRD-I001,Valid Product Base,Test,1000.00,10,Active
+<<<<<<< HEAD
 PRD-I002,Duplicate Code,Test,900.00,15,Active
 PRD-I002,Duplicate Code Same File,Test,800.00,20,Active
+=======
+PRD-I002,Duplicate Code First,Test,900.00,15,Active
+PRD-I002,Duplicate Code Second,Test,800.00,20,Active
+>>>>>>> feature-api-and-tests
 PRD-I003,Negative Price,Test,-500.00,10,Active
 PRD-I004,Negative Stock,Test,500.00,-10,Active
 PRD-I005,Non Numeric Price,Test,abc,10,Active
@@ -13,24 +18,43 @@ PRD-I010,,Test,500.00,10,Active
 PRD-I011,Missing Category,,500.00,10,Active
 PRD-I012,Empty Price,,,10,Active
 PRD-I013,Empty Stock,,,500.00,Active
+<<<<<<< HEAD
 PRD-I014,Zero Price But Valid,Test,0.00,10,Active
 PRD-I015,Decimal Price,Test,99.999,10,Active
 PRD-I016,Very Long Product Name That Exceeds Maximum Field Length Allowed By The System And Should Be Rejected,Test,500.00,10,Active
+=======
+PRD-I014,Zero Price,Test,0.00,10,Active
+PRD-I015,Decimal Price,Test,99.999,10,Active
+PRD-I016,Very Long Product Name That Exceeds Maximum Allowed Field Length And Must Be Rejected By System,Test,500.00,10,Active
+>>>>>>> feature-api-and-tests
 PRD-I017,Status Empty,Test,500.00,10,
 PRD-I018,Price With Comma,Test,"1,500.00",10,Active
 PRD-I019,Price With Spaces,Test, 500.00 ,10,Active
 PRD-I020,Stock Negative Large,Test,500.00,-9999,Active
+<<<<<<< HEAD
 PRD-I021,Invalid Character Code,Test!@#,Test,500.00,10,Active
 PRD-I022,Product Name With Semicolon,Test;Drop,500.00,10,Active
+=======
+PRD-I021,Bad Code Characters,Test!@#$,Test,500.00,10,Active
+PRD-I022,Semicolon In Name,Test;Drop,500.00,10,Active
+>>>>>>> feature-api-and-tests
 PRD-I023,Extremely High Price,Test,999999999999999,10,Active
 PRD-I024,Extremely High Stock,Test,500.00,999999999999,Active
 PRD-I025,Bad Price Text,Test,price,10,Active
 PRD-I026,Bad Stock Text,Test,500.00,quantity,Active
+<<<<<<< HEAD
 PRD-I027,Invalid Status Lowercase,badstatus,500.00,10,inactive
 PRD-I028,Invalid Status Mixed Case,BadStatus,500.00,10,InActive
 PRD-I029,Missing Everything,,,,
 PRD-I030,,,,
 PRD-I031,Price Float Too Many Decimals,Test,100.123456,10,Active
+=======
+PRD-I027,Invalid Status Lower,badstatus,500.00,10,inactive
+PRD-I028,Invalid Status Mixed,BadStatus,500.00,10,InActive
+PRD-I029,Missing Everything,,,,
+PRD-I030,,,,
+PRD-I031,Price Too Many Decimals,Test,100.123456,10,Active
+>>>>>>> feature-api-and-tests
 PRD-I032,Stock Float,Test,500.00,10.5,Active
 PRD-I033,Stock String,Test,500.00,twenty,Active
 PRD-I034,Price Boolean,Test,true,10,Active
@@ -39,8 +63,13 @@ PRD-I036,Status Null,Test,500.00,10,
 PRD-I037,Duplicate Already In DB,Test,500.00,10,Active
 PRD-I038,SQL Injection Attempt,Test,500.00,10,Active'; DROP TABLE products;--
 PRD-I039,XSS Attempt,Bad,500.00,10,<script>alert(1)</script>
+<<<<<<< HEAD
 PRD-I040,Very Long Code That Exceeds Fifty Characters Maximum Allowed For Product Code And Must Be Rejected,Test,500.00,10,Active
 PRD-I041,Negative Zero Price,Test,-0.01,10,Active
+=======
+PRD-I040,Very Long Code That Exceeds Fifty Characters Maximum Allowed For Product Code,Test,500.00,10,Active
+PRD-I041,Negative Near Zero,Test,-0.01,10,Active
+>>>>>>> feature-api-and-tests
 PRD-I042,Huge Negative Stock,Test,500.00,-999999,Active
 PRD-I043,Invalid Unicode Category,テスト,500.00,10,Active
 PRD-I044,Price With Dollar Sign,Test,$500.00,10,Active
@@ -48,5 +77,20 @@ PRD-I045,Stock With Plus Sign,Test,500.00,+10,Active
 PRD-I046,Price With Percent,Test,50%,10,Active
 PRD-I047,Category Empty String,Test,,500.00,10,Active
 PRD-I048,Status Extra Spaces,Test,500.00,10,  Active  
+<<<<<<< HEAD
 PRD-I049,Price Negative Zero Float,Test,-0.005,10,Active
 PRD-I050,Code With Spaces,PRD I050,Test,500.00,10,Active
+=======
+PRD-I049,Price Negative Float,Test,-0.005,10,Active
+PRD-I050,Code With Spaces,PRD I050,Test,500.00,10,Active
+PRD-I051,Price With Spaces Inside,Test,1 500.00,10,Active
+PRD-I052,Stock Negative Float,Test,500.00,-2.5,Active
+PRD-I053,Status Lowercase,Test,500.00,10,active
+PRD-I054,Status Uppercase,Test,500.00,10,ACTIVE
+PRD-I055,Status Mixed,Test,500.00,10,AcTiVe
+PRD-I056,Price Empty String,Test,,10,Active
+PRD-I057,Stock Empty String,Test,500.00,,Active
+PRD-I058,Name With Null Byte,Test\x00Name,500.00,10,Active
+PRD-I059,Price With Underscore,Test,5_00.00,10,Active
+PRD-I060,Stock With Underscore,Test,500.00,1_0,Active
+>>>>>>> feature-api-and-tests

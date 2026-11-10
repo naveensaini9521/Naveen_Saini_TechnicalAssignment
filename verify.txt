@@ -1,0 +1,26 @@
+cd /var/www/YourFullName_TechnicalAssignment
+
+# 1. Tests
+pytest -v            # → 148 passed
+
+# 2. App boots
+python run.py        # → Running on http://127.0.0.1:5000  (Ctrl+C to stop)
+
+# 3. .env is gitignored
+git check-ignore -v .env   # → .gitignore:N:.env    .env
+
+# 4. Feature branch was merged
+git log --graph --oneline --all | head -10   # → shows merge commit
+
+# 5. All deliverables exist
+ls README.md AI_USAGE.md sql/schema.sql sql/required_queries.sql \
+   sample_data/valid_products.csv sample_data/invalid_products.csv \
+   docs/API_DOCUMENTATION.md docs/DEBUGGING_EXERCISE.md
+# → all files listed, no "No such file"
+
+# 6. No secrets in tracked files
+grep -r "Admin@123\|YOUR_PASSWORD" --include="*.py" --include="*.sql" . | grep -v test_ | grep -v sample
+# → should be empty
+
+#### reset DEB
+mysql -u root -p -e "DELETE FROM products WHERE product_code LIKE 'PRD-V%' OR product_code LIKE 'PRD-I%'"

@@ -43,7 +43,7 @@ Built for the Savyant Systems Fresher / Trainee Software Developer assignment.
 ### Step 1 — Clone and install
 
 ```bash
-git clone https://github.com/naveensaini9521/sales-inventory-management.git
+git clone https://github.com/naveensaini9521/Naveen_Saini_TechnicalAssignment.git
 cd sales-inventory-management
 python -m venv venv
 source venv/bin/activate          # Windows: venv\Scripts\activate
@@ -214,4 +214,4 @@ See [`AI_USAGE.md`](AI_USAGE.md).
 
 ## Demo video
 
-**Link:** https://youtu.be/<PLACEHOLDER>
+**Link:** https://www.youtube.com/watch?v=Wr31h_R_TbE

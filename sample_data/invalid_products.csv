@@ -1,8 +1,64 @@
 product_code,product_name,category,price,stock_quantity,status
-PRD-201,Good Product,Accessories,1000.00,10,Active
-PRD-201,Duplicate Code,Accessories,900.00,5,Active
-PRD-202,Negative Price,Accessories,-100.00,3,Active
-PRD-203,Bad Stock,Displays,200.00,-5,Active
-PRD-204,Not A Number,Displays,abc,10,Active
-PRD-205,Bad Status,Displays,300.00,10,Unknown
-,Missing Code,Displays,300.00,10,Active
+REJ-TEST-001,Baseline Valid Row,Test,1500.00,20,Active
+REJ-TEST-002,Duplicate Code First,Test,1400.00,25,Active
+REJ-TEST-002,Duplicate Code Second,Test,1300.00,30,Active
+REJ-NEG-PRICE,Product With Negative Price,Test,-5000.00,10,Active
+REJ-NEG-STOCK,Product With Negative Stock,Test,5000.00,-50,Active
+REJ-TXT-PRICE,Price As Text,Test,fivehundred,15,Active
+REJ-TXT-STOCK,Stock As Text,Test,5000.00,many,Active
+REJ-BAD-STATUS,Product With Bad Status,Test,5000.00,10,Discontinued
+,Missing Product Code,Test,5000.00,10,Active
+REJ-NO-NAME,,Test,5000.00,10,Active
+REJ-NO-CAT,Missing Category Name,,5000.00,10,Active
+REJ-NO-PRICE,No Price Given,Test,,10,Active
+REJ-NO-STOCK,No Stock Given,Test,5000.00,,Active
+REJ-ZERO-PRICE,Zero Price Valid Edge,Test,0.00,10,Active
+REJ-DEC-PRICE,Price With Too Many Decimals,Test,999.123456,10,Active
+REJ-LONG-NAME,This Product Name Is Intentionally Made Extremely Long To Exceed The Maximum Length Allowed In The Database Schema,Test,5000.00,10,Active
+REJ-EMPTY-STATUS,Empty Status Value,Test,5000.00,10,
+REJ-COMMA-PRICE,Price With Thousand Separator,Test,"5,000.00",10,Active
+REJ-SPACE-PRICE,Price With Surrounding Spaces,Test,  5000.00  ,10,Active
+REJ-HUGE-NEG-NUM,Extremely Negative Stock,Test,5000.00,-999999,Active
+REJ-SPEC-CODE,Product Code With Special Chars,###@,Test,5000.00,10,Active
+REJ-SEMI-NAME,Name;Contains;Semicolons,Test,5000.00,10,Active
+REJ-HUGE-PRICE,Price Beyond Maximum Allowed,Test,99999999999999,10,Active
+REJ-HUGE-STOCK,Stock Beyond Maximum Allowed,Test,5000.00,99999999999,Active
+REJ-WORD-PRICE,Word As Price Value,Test,twothousand,10,Active
+REJ-WORD-STOCK,Word As Stock Value,Test,5000.00,fifty,Active
+REJ-LOW-STATUS,Status In Lowercase,badstatus,5000.00,10,inactive
+REJ-MIX-STATUS,Status In Mixed Case,BadStatus,5000.00,10,InActive
+REJ-EMPTY-ROW,,,,
+REJ-BLANK-ROW,,,,
+REJ-LONG-DEC-PRICE,Price With Excessive Decimals,Test,123.987654321,10,Active
+REJ-FLOAT-STOCK,Stock As Fractional Value,Test,5000.00,15.25,Active
+REJ-STR-STOCK,Stock As Text String,Test,5000.00,plenty,Active
+REJ-BOOL-PRICE,Price As Boolean,Test,false,10,Active
+REJ-NUM-STATUS,Status As Number,Test,5000.00,10,5
+REJ-NULL-STATUS,Status Missing In Row,Test,5000.00,10,
+REJ-SQL-INJ,SQL Injection Payload Test,Test,5000.00,10,DROP'; DROP TABLE stock_movements;--
+REJ-XSS-TEST,XSS Script Attempt Test,Bad,5000.00,10,<script>alert("xss")</script>
+REJ-LONG-CODE,CODE-THAT-IS-WAY-TOO-LONG-FOR-THE-FIFTY-CHARACTER-LIMIT,Test,5000.00,10,Active
+REJ-MIN-NEG,Minimum Negative Price Value,Test,-0.01,10,Active
+REJ-BIG-NEG,Very Large Negative Stock,Test,5000.00,-888888,Active
+REJ-UNI-CAT,Category With Japanese Text,テスト,5000.00,10,Active
+REJ-CURRENCY,Price With Currency Symbol,Test,₹5000.00,10,Active
+REJ-PLUS-STOCK,Stock With Leading Plus,Test,5000.00,+25,Active
+REJ-PERCENT-PRICE,Price As Percentage,Test,75%,10,Active
+REJ-EMPTY-CAT,Category Empty String,Test,"",5000.00,10,Active
+REJ-PAD-STATUS,Status With Extra Spaces,Test,5000.00,10,  Discontinued  
+REJ-NEG-FRAC,Small Fractional Negative,Test,-0.005,10,Active
+REJ-SPACE-CODE,Product Code Contains Space,SP ACE,Test,5000.00,10,Active
+REJ-INNER-SPACE,Inner Space In Price,Test,5 000.00,10,Active
+REJ-FRAC-NEG-STK,Fractional Negative Stock,Test,5000.00,-3.75,Active
+REJ-LOW-VALID,Lowercase Active String,Test,5000.00,10,active
+REJ-UP-STATUS,All Caps Status String,Test,5000.00,10,ACTIVE
+REJ-MIX-CASE,MiXeD Case Status,Test,5000.00,10,AcTiVe
+REJ-EMPTY-PRICE-S,Price As Empty String,Test,"",10,Active
+REJ-EMPTY-STOCK-S,Stock As Empty String,Test,5000.00,"",Active
+REJ-UNDER-PRICE,Underscore In Price Number,Test,5_000.00,10,Active
+REJ-UNDER-STOCK,Underscore In Stock Number,Test,5000.00,1_0,Active
+REJ-FRAC-NEG-2,Another Fractional Negative,Test,5000.00,-1.25,Active
+REJ-TAB-NAME,Name With	Tab	Characters,Test,5000.00,10,Active
+REJ-QUOTE-NAME,"Name With ""Embedded"" Quotes",Test,5000.00,10,Active
+REJ-TWO-DOTS,Price With Two Decimal Dots,Test,1.5.0,10,Active
+REJ-PLUS-PRICE,Price With Leading Plus Sign,Test,+5000.00,10,Active

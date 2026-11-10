@@ -7,6 +7,8 @@ All reports are Admin-only.
 from flask import Blueprint, render_template, request, flash
 from flask_login import login_required
 
+from app.extensions import db
+from app.models import Product
 from app.services.report_service import (
     customer_sales_summary, product_sales_summary,
     low_stock_report, stock_movement_history,
@@ -72,15 +74,33 @@ def low_stock():
 @reports_bp.route("/stock-movements")
 @admin_required
 def stock_movements():
-    product_id = request.args.get("product_id", "")
-    date_from  = request.args.get("date_from", "")
-    date_to    = request.args.get("date_to", "")
-    rows = stock_movement_history(
-        product_id=product_id or None,
-        date_from=date_from or None,
-        date_to=date_to or None,
-    )
+    product_id = request.args.get("product_id", "").strip()
+    date_from  = request.args.get("date_from", "").strip()
+    date_to    = request.args.get("date_to", "").strip()
+
+    rows = []
+    try:
+        rows = stock_movement_history(
+            product_id=product_id or None,
+            date_from=date_from or None,
+            date_to=date_to or None,
+        )
+    except ValidationError as e:
+        flash(str(e), "error")
+        rows = []
+
+    if rows is None:
+        rows = []
+
+    products = db.session.query(Product).order_by(Product.name.asc()).all()
+
+    print(f"DEBUG stock_movements: product_id={product_id!r}, rows={len(rows)}, products={len(products)}")
+
     return render_template(
         "reports/stock_movements.html",
-        rows=rows, product_id=product_id, date_from=date_from, date_to=date_to,
+        rows=rows,
+        product_id=product_id,
+        date_from=date_from,
+        date_to=date_to,
+        products=products,
     )

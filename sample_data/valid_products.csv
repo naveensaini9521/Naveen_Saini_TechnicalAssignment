@@ -1,6 +1,61 @@
 product_code,product_name,category,price,stock_quantity,status
-PRD-101,Mechanical Keyboard,Accessories,2500.00,15,Active
-PRD-102,Gaming Mouse,Accessories,1200.00,25,Active
-PRD-103,27" 4K Monitor,Displays,25000.00,8,Active
-PRD-104,USB-C Hub,Accessories,1800.00,40,Active
-PRD-105,Wireless Headphones,Audio,4500.00,12,Active
+ELEC-T001,Smart TV 32 inch,Televisions,18500.00,15,Active
+ELEC-T002,Smart TV 43 inch,Televisions,32000.00,10,Active
+ELEC-T003,Smart TV 55 inch 4K,Televisions,55000.00,8,Active
+ELEC-T004,Smart TV 65 inch OLED,Televisions,95000.00,5,Active
+ELEC-T005,LED TV 24 inch,Televisions,9500.00,20,Active
+ELEC-R001,Refrigerator 190L Single Door,Refrigerators,22000.00,12,Active
+ELEC-R002,Refrigerator 260L Double Door,Refrigerators,35000.00,8,Active
+ELEC-R003,Refrigerator 340L Frost Free,Refrigerators,48000.00,6,Active
+ELEC-R004,Refrigerator 500L Side-by-Side,Refrigerators,72000.00,4,Active
+ELEC-R005,Deep Freezer 200L,Refrigerators,28000.00,5,Active
+ELEC-W001,Washing Machine 6kg Top Load,Washing Machines,18500.00,15,Active
+ELEC-W002,Washing Machine 7kg Front Load,Washing Machines,32000.00,10,Active
+ELEC-W003,Washing Machine 8kg Front Load,Washing Machines,38000.00,8,Active
+ELEC-W004,Washing Machine 10kg Front Load,Washing Machines,52000.00,6,Active
+ELEC-W005,Semi-Automatic 7.5kg,Washing Machines,12000.00,20,Active
+ELEC-A001,Air Conditioner 1 Ton Split,Air Conditioners,32000.00,10,Active
+ELEC-A002,Air Conditioner 1.5 Ton Split,Air Conditioners,42000.00,8,Active
+ELEC-A003,Air Conditioner 2 Ton Split,Air Conditioners,55000.00,6,Active
+ELEC-A004,Air Conditioner 1.5 Ton Window,Air Conditioners,28000.00,12,Active
+ELEC-A005,Air Cooler 50L,Air Conditioners,12500.00,18,Active
+ELEC-M001,Microwave Oven 20L Solo,Microwaves,7500.00,25,Active
+ELEC-M002,Microwave Oven 25L Convection,Microwaves,15000.00,15,Active
+ELEC-M003,Microwave Oven 30L Grill,Microwaves,22000.00,10,Active
+ELEC-M004,OTG 28L,Microwaves,8500.00,20,Active
+ELEC-M005,OTG 42L,Microwaves,12500.00,12,Active
+ELEC-K001,Electric Kettle 1.5L,Kitchen Appliances,1200.00,50,Active
+ELEC-K002,Electric Kettle 2L,Kitchen Appliances,1500.00,40,Active
+ELEC-K003,Induction Cooktop 2000W,Kitchen Appliances,3500.00,25,Active
+ELEC-K004,Mixer Grinder 750W,Kitchen Appliances,4200.00,20,Active
+ELEC-K005,Blender 500W,Kitchen Appliances,2800.00,30,Active
+ELEC-K006,Food Processor 1000W,Kitchen Appliances,8500.00,15,Active
+ELEC-K007,Toaster 2-Slice,Kitchen Appliances,1800.00,35,Active
+ELEC-K008,Sandwich Maker,Kitchen Appliances,2200.00,28,Active
+ELEC-K009,Electric Rice Cooker 1.8L,Kitchen Appliances,2500.00,25,Active
+ELEC-K010,Coffee Maker Drip,Kitchen Appliances,3200.00,18,Active
+ELEC-K011,Pressure Cooker Electric 5L,Kitchen Appliances,4500.00,15,Active
+ELEC-K012,Air Fryer 4L,Kitchen Appliances,6500.00,20,Active
+ELEC-K013,Water Purifier RO+UV,Kitchen Appliances,12500.00,10,Active
+ELEC-K014,Water Heater 15L,Kitchen Appliances,8500.00,12,Active
+ELEC-K015,Water Heater 25L,Kitchen Appliances,11000.00,8,Active
+ELEC-F001,Ceiling Fan 1200mm,Fans,2200.00,30,Active
+ELEC-F002,Ceiling Fan 1400mm,Fans,2800.00,25,Active
+ELEC-F003,Table Fan 400mm,Fans,1800.00,35,Active
+ELEC-F004,Wall Fan 400mm,Fans,2200.00,28,Active
+ELEC-F005,Pedestal Fan 400mm,Fans,3200.00,20,Active
+ELEC-F006,Tower Fan 40 inch,Fans,5500.00,15,Active
+ELEC-F007,Exhaust Fan 250mm,Fans,1500.00,40,Active
+ELEC-F008,Exhaust Fan 300mm,Fans,1800.00,35,Active
+ELEC-F009,Rechargeable Fan,Fans,4500.00,15,Active
+ELEC-F010,BLDC Ceiling Fan,Fans,4800.00,12,Active
+ELEC-L001,LED Bulb 9W Cool White,Lighting,150.00,200,Active
+ELEC-L002,LED Bulb 12W Warm White,Lighting,180.00,180,Active
+ELEC-L003,LED Bulb 18W Cool White,Lighting,280.00,150,Active
+ELEC-L004,LED Tube Light 20W,Lighting,550.00,100,Active
+ELEC-L005,LED Panel Light 12W,Lighting,380.00,120,Active
+ELEC-L006,LED Strip Light 5m,Lighting,750.00,80,Active
+ELEC-L007,Led Flood Light 50W,Lighting,1800.00,40,Active
+ELEC-L008,Led Flood Light 100W,Lighting,3200.00,25,Active
+ELEC-L009,Night Lamp Plug-in,Lighting,450.00,60,Active
+ELEC-L010,Solar Garden Light Set,Lighting,2500.00,20,Active

@@ -10,8 +10,7 @@ here as callables for tests / verification.
 
 from decimal import Decimal
 
-from sqlalchemy import text
-from sqlalchemy import func
+from sqlalchemy import text, func, extract
 
 from app.extensions import db
 from app.models import (
@@ -38,7 +37,6 @@ def customer_sales_summary(date_from=None, date_to=None) -> list[dict]:
     if d_from and d_to and d_from > d_to:
         raise ValidationError("Date from must be before Date to.")
 
-    # Subquery: per-customer aggregates of CONFIRMED orders only
     subq = db.session.query(
         SalesOrder.customer_id.label("cid"),
         func.count(SalesOrder.id).label("order_count"),
@@ -108,7 +106,10 @@ def product_sales_summary(date_from=None, date_to=None) -> list[dict]:
         for r in q.all()
     ]
 
+
+# ============================================================
 # UI REPORT 3 — Low Stock Report
+# ============================================================
 def low_stock_report(threshold) -> list[dict]:
     if threshold is None or str(threshold).strip() == "":
         raise ValidationError("Threshold is required.")
@@ -134,14 +135,21 @@ def low_stock_report(threshold) -> list[dict]:
         }
         for p in rows
     ]
+
+
 # ============================================================
 # UI REPORT 4 — Stock Movement History
 # ============================================================
 def stock_movement_history(product_id=None, date_from=None, date_to=None) -> list[dict]:
     q = db.session.query(StockMovement).order_by(StockMovement.created_at.desc())
 
-    if product_id:
-        q = q.filter(StockMovement.product_id == int(product_id))
+    if product_id not in (None, "", "None"):
+        try:
+            pid = int(str(product_id).strip())
+        except (TypeError, ValueError):
+            raise ValidationError("Product filter must be a numeric ID.")
+        q = q.filter(StockMovement.product_id == pid)
+
     if date_from:
         q = q.filter(StockMovement.created_at >= parse_date(date_from))
     if date_to:
@@ -164,7 +172,6 @@ def stock_movement_history(product_id=None, date_from=None, date_to=None) -> lis
 
 # ============================================================
 # 5 STANDALONE SQL QUERIES (Part 9)
-# Same SQL as sql/required_queries.sql
 # ============================================================
 
 SQL_TOP_3_CUSTOMERS = """
@@ -228,15 +235,7 @@ def run_customers_with_no_orders() -> list[dict]:
 
 
 def run_monthly_sales() -> list[dict]:
-    """Month-wise Confirmed sales totals, grouped by year and month.
-
-    Uses SQLAlchemy `extract()` instead of the raw SQL_MONTHLY_SALES
-    constant so the query runs on both MySQL (production) and SQLite
-    (tests). MySQL-specific YEAR()/MONTH() live only in
-    sql/required_queries.sql for the standalone deliverable.
-    """
-    from sqlalchemy import extract, func
-
+    """Portable: uses SQLAlchemy extract() so it works on MySQL and SQLite."""
     rows = (
         db.session.query(
             extract("year",  SalesOrder.order_date).label("year"),
@@ -249,7 +248,6 @@ def run_monthly_sales() -> list[dict]:
         .order_by(text("year DESC"), text("month DESC"))
         .all()
     )
-
     return [
         {
             "year":        int(r.year),
@@ -259,6 +257,7 @@ def run_monthly_sales() -> list[dict]:
         }
         for r in rows
     ]
+
 
 def run_products_below_threshold(threshold: int) -> list[dict]:
     return [dict(r._mapping)

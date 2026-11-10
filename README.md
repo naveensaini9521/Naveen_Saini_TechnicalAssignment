@@ -197,7 +197,6 @@ Samples: `sample_data/valid_products.csv`, `sample_data/invalid_products.csv`.
 - No CSRF protection
 - CSV import is synchronous
 - Session-based auth (no JWT)
-- Demo video is a separate deliverable
 
 ---
 
@@ -212,6 +211,12 @@ See [`docs/API_DOCUMENTATION.md`](docs/API_DOCUMENTATION.md).
 ## AI usage disclosure
 
 See [`AI_USAGE.md`](AI_USAGE.md).
+
+## Demo video
+
+**Link:** https://youtu.be/<PLACEHOLDER>
+
+> _5–8 minute walkthrough showing login, customer/product creation, multi-item order with discount, confirm (stock deducted), cancel (stock restored), Sales User role restrictions, CSV import (valid + invalid), and the passing test suite._
 
 <!-- verified end-to-end -->
 

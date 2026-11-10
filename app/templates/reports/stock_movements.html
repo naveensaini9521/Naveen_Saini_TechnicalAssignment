@@ -7,16 +7,6 @@
   <a href="{{ url_for('reports.home') }}" class="btn secondary">← Back to reports</a>
 </div>
 
-<form method="get" class="filters">
-  <label>Product ID <input name="product_id" value="{{ product_id }}" placeholder="optional"></label>
-  <label>From <input type="date" name="date_from" value="{{ date_from }}"></label>
-  <label>To   <input type="date" name="date_to"   value="{{ date_to }}"></label>
-  <button type="submit">Filter</button>
-  {% if product_id or date_from or date_to %}
-    <a href="{{ url_for('reports.stock_movements') }}" class="btn secondary">Clear</a>
-  {% endif %}
-</form>
-
 <table>
   <thead>
     <tr>

@@ -211,18 +211,7 @@ See [`docs/API_DOCUMENTATION.md`](docs/API_DOCUMENTATION.md).
 ## AI usage disclosure
 
 See [`AI_USAGE.md`](AI_USAGE.md).
-<<<<<<< HEAD
 
 ## Demo video
 
 **Link:** https://youtu.be/<PLACEHOLDER>
-
-> _5–8 minute walkthrough showing login, customer/product creation, multi-item order with discount, confirm (stock deducted), cancel (stock restored), Sales User role restrictions, CSV import (valid + invalid), and the passing test suite._
-
-<!-- verified end-to-end -->
-
-<!-- feature branch merge for Part 13 -->
-
-<!-- feature branch merge for Part 13 -->
-=======
->>>>>>> feature-api-and-tests

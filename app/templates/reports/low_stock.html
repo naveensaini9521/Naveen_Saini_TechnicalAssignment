@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Low Stock{% endblock %}
 {% block content %}
-<h1>Low Stock Report</h1>
+
+<div class="page-header">
+  <h1>Low Stock Report</h1>
+  <a href="{{ url_for('reports.home') }}" class="btn secondary">← Back to reports</a>
+</div>
 
 <form method="get" class="filters">
   <label>Threshold <input type="number" name="threshold" min="0" value="{{ threshold }}" required></label>
@@ -9,17 +13,28 @@
 </form>
 
 <table>
-  <thead><tr><th>Code</th><th>Product</th><th>Stock</th></tr></thead>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Product</th>
+      <th class="num">Stock</th>
+    </tr>
+  </thead>
   <tbody>
     {% for r in rows %}
     <tr>
-      <td>{{ r.product_code }}</td>
+      <td><code class="code-pill">{{ r.product_code }}</code></td>
       <td>{{ r.product_name }}</td>
-      <td>{{ r.stock_quantity }}</td>
+      <td class="num">
+        <span class="pill {% if r.stock_quantity == 0 %}pill-rose{% elif r.stock_quantity < 10 %}pill-amber{% else %}pill-green{% endif %}">
+          {{ r.stock_quantity }}
+        </span>
+      </td>
     </tr>
     {% else %}
-    <tr><td colspan="3">No products below threshold.</td></tr>
+    <tr><td colspan="3" class="empty-row">No products below threshold.</td></tr>
     {% endfor %}
   </tbody>
 </table>
+
 {% endblock %}

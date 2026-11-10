@@ -1,21 +1,52 @@
 {% extends "base.html" %}
 {% block title %}New Product{% endblock %}
 {% block content %}
-<h1>New Product</h1>
 
-<form method="post">
-  <label>Product code * <input name="product_code" required></label>
-  <label>Name * <input name="name" required></label>
-  <label>Category * <input name="category" required></label>
-  <label>Price * <input name="price" type="number" step="0.01" min="0" required></label>
-  <label>Opening stock * <input name="stock_quantity" type="number" min="0" value="0" required></label>
-  <label>Status
-    <select name="status">
-      <option value="Active" selected>Active</option>
-      <option value="Inactive">Inactive</option>
-    </select>
-  </label>
-  <button type="submit">Create</button>
-  <a href="{{ url_for('products.list_products_view') }}">Cancel</a>
+<div class="page-header">
+  <h1>New Product</h1>
+  <a href="{{ url_for('products.list_products_view') }}" class="btn secondary">← Back</a>
+</div>
+
+<form method="post" class="form-card">
+  <div class="form-row">
+    <label>Product code *
+      <input name="product_code" required autofocus placeholder="PRD-001">
+    </label>
+    <label>Name *
+      <input name="name" required>
+    </label>
+  </div>
+
+  <div class="form-row">
+    <label>Category *
+      <input name="category" required>
+    </label>
+    <label>Status
+      <select name="status">
+        <option value="Active" selected>Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="form-row">
+    <label>Price *
+      <input name="price" type="number" step="0.01" min="0" required>
+    </label>
+    <label>Opening stock *
+      <input name="stock_quantity" type="number" min="0" value="0" required>
+    </label>
+  </div>
+
+  <p class="hint">
+    Codes are automatically uppercased. Duplicates are rejected.
+    Stock changes after creation go through <strong>Inventory → Adjust</strong>.
+  </p>
+
+  <div class="action-bar">
+    <button type="submit">Create product</button>
+    <a href="{{ url_for('products.list_products_view') }}" class="btn secondary">Cancel</a>
+  </div>
 </form>
+
 {% endblock %}

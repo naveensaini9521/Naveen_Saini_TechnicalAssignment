@@ -1,14 +1,37 @@
 {% extends "base.html" %}
 {% block title %}New Customer{% endblock %}
 {% block content %}
-<h1>New Customer</h1>
 
-<form method="post">
-  <label>Name * <input name="name" required></label>
-  <label>Email <input name="email" type="email"></label>
-  <label>Mobile <input name="mobile"></label>
-  <label>City <input name="city"></label>
-  <button type="submit">Create</button>
-  <a href="{{ url_for('customers.list_customers_view') }}">Cancel</a>
+<div class="page-header">
+  <h1>New Customer</h1>
+  <a href="{{ url_for('customers.list_customers_view') }}" class="btn secondary">← Back</a>
+</div>
+
+<form method="post" class="form-card">
+  <div class="form-row">
+    <label>Name *
+      <input name="name" required autofocus>
+    </label>
+    <label>City
+      <input name="city">
+    </label>
+  </div>
+
+  <div class="form-row">
+    <label>Email
+      <input name="email" type="email" placeholder="name@example.com">
+    </label>
+    <label>Mobile
+      <input name="mobile" placeholder="+91 98765 43210">
+    </label>
+  </div>
+
+  <p class="hint">Provide at least one of: email or mobile.</p>
+
+  <div class="action-bar">
+    <button type="submit">Create customer</button>
+    <a href="{{ url_for('customers.list_customers_view') }}" class="btn secondary">Cancel</a>
+  </div>
 </form>
+
 {% endblock %}

@@ -212,9 +212,3 @@ See [`docs/API_DOCUMENTATION.md`](docs/API_DOCUMENTATION.md).
 ## AI usage disclosure
 
 See [`AI_USAGE.md`](AI_USAGE.md).
-
-<!-- verified end-to-end -->
-
-<!-- feature branch merge for Part 13 -->
-
-<!-- feature branch merge for Part 13 -->

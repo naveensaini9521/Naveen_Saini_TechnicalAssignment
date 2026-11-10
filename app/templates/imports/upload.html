@@ -1,27 +1,46 @@
 {% extends "base.html" %}
 {% block title %}Import Products{% endblock %}
 {% block content %}
-<h1>Import Products from CSV</h1>
 
-<p>
-  Upload a CSV with these columns (exact header names):
-  <code>product_code,product_name,category,price,stock_quantity,status</code>
-</p>
+<div class="page-header">
+  <h1>Import Products from CSV</h1>
+  <a href="{{ url_for('products.list_products_view') }}" class="btn secondary">← Back to products</a>
+</div>
 
-<form method="post" enctype="multipart/form-data">
-  <input type="file" name="file" accept=".csv" required>
-  <button type="submit">Upload & Import</button>
-</form>
+<div class="form-card">
+  <p class="hint" style="text-align:left;">
+    Upload a CSV with these exact columns:
+    <code>product_code,product_name,category,price,stock_quantity,status</code>
+  </p>
 
-<p class="hint">
-  Download samples:
-  <a href="{{ url_for('imports.sample', kind='valid') }}">valid_products.csv</a>
-  &middot;
-  <a href="{{ url_for('imports.sample', kind='invalid') }}">invalid_products.csv</a>
-</p>
+  <form method="post" enctype="multipart/form-data">
+    <label>CSV file *
+      <input type="file" name="file" accept=".csv" required>
+    </label>
 
-<p class="hint">
-  Import is <strong>all-or-nothing</strong> — if any row is invalid, no products are created.
-  Existing product codes are rejected.
-</p>
+    <div class="action-bar">
+      <button type="submit">Upload & import</button>
+      <a href="{{ url_for('products.list_products_view') }}" class="btn secondary">Cancel</a>
+    </div>
+  </form>
+
+  <div class="sample-links">
+    <span>Download samples:</span>
+    <a href="{{ url_for('imports.sample', kind='valid') }}">valid_products.csv</a>
+    <span>·</span>
+    <a href="{{ url_for('imports.sample', kind='invalid') }}">invalid_products.csv</a>
+  </div>
+</div>
+
+<div class="form-card info-card">
+  <h2 style="margin-top:0;">How import works</h2>
+  <ul class="info-list">
+    <li><strong>All-or-nothing</strong> — if any row is invalid, <em>no products are created</em>.</li>
+    <li>Existing product codes are rejected (case-insensitive).</li>
+    <li>Negative prices or stock, invalid status, or non-numeric values cause the whole file to be rejected.</li>
+    <li>Every imported product automatically gets an <code>Opening</code> stock movement.</li>
+    <li>Errors are reported per row with row numbers, so you can fix and retry.</li>
+  </ul>
+</div>
+
 {% endblock %}

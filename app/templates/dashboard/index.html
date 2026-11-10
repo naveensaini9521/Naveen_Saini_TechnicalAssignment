@@ -1,41 +1,47 @@
 {% extends "base.html" %}
 {% block title %}Dashboard{% endblock %}
 {% block content %}
+
 <h1>Dashboard</h1>
 
-<table>
-  <tr>
-    <th>Active customers</th>
-    <td>{{ stats.customers_active }}</td>
-  </tr>
-  <tr>
-    <th>Active products</th>
-    <td>{{ stats.products_active }}</td>
-  </tr>
-  <tr>
-    <th>Draft orders</th>
-    <td>{{ stats.orders_draft }}</td>
-  </tr>
-  <tr>
-    <th>Confirmed orders</th>
-    <td>{{ stats.orders_confirmed }}</td>
-  </tr>
-  <tr>
-    <th>Cancelled orders</th>
-    <td>{{ stats.orders_cancelled }}</td>
-  </tr>
-  <tr>
-    <th>Stock movements recorded</th>
-    <td>{{ stats.movements }}</td>
-  </tr>
-</table>
+<div class="stats-grid">
+  <div class="stat-card stat-blue">
+    <div class="stat-label">Active customers</div>
+    <div class="stat-value">{{ stats.customers_active }}</div>
+  </div>
+  <div class="stat-card stat-emerald">
+    <div class="stat-label">Active products</div>
+    <div class="stat-value">{{ stats.products_active }}</div>
+  </div>
+  <div class="stat-card stat-amber">
+    <div class="stat-label">Draft orders</div>
+    <div class="stat-value">{{ stats.orders_draft }}</div>
+  </div>
+  <div class="stat-card stat-green">
+    <div class="stat-label">Confirmed orders</div>
+    <div class="stat-value">{{ stats.orders_confirmed }}</div>
+  </div>
+  <div class="stat-card stat-rose">
+    <div class="stat-label">Cancelled orders</div>
+    <div class="stat-value">{{ stats.orders_cancelled }}</div>
+  </div>
+  <div class="stat-card stat-slate">
+    <div class="stat-label">Stock movements</div>
+    <div class="stat-value">{{ stats.movements }}</div>
+  </div>
+</div>
 
 <h2>Recent orders</h2>
+
 {% if recent_orders %}
 <table>
   <thead>
     <tr>
-      <th>Order #</th><th>Customer</th><th>Date</th><th>Status</th><th>Total</th>
+      <th>Order #</th>
+      <th>Customer</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th>Total</th>
     </tr>
   </thead>
   <tbody>
@@ -51,6 +57,7 @@
   </tbody>
 </table>
 {% else %}
-<p>No orders yet.</p>
+<p class="empty-state">No orders yet. Create your first one from <a href="{{ url_for('orders.create') }}">Orders → New order</a>.</p>
 {% endif %}
+
 {% endblock %}
